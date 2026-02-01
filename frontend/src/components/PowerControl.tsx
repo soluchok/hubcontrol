@@ -17,22 +17,30 @@ export function PowerControl({ device, port, onClose, onActionComplete }: PowerC
   const displayNumber = port.mappedPort || port.port;
   
   // For uhubctl, we need the location (USB path) and the port number on that hub
-  // The location should be the parent hub's path, and port is hubPort
+  // Format: <bus>-<path> e.g., "10-1.3" for bus 10, path 1.3
   const getUhubctlParams = () => {
-    // Location is the path to the hub (e.g., "1.2" for a hub at bus 1, port 2)
-    // We need to strip the last segment from port.location to get the hub path
+    // Location format from API is like "1.2.3" (path only)
+    // We need to convert to uhubctl format: "<bus>-<hub_path>" and port number
+    // The port.location is the full path to the port, we need the hub path (parent)
+    
     let hubLocation = '';
+    let portNum = port.hubPort || port.port;
+    
     if (port.location) {
       const parts = port.location.split('.');
       if (parts.length > 1) {
-        hubLocation = parts.slice(0, -1).join('.');
+        // Get parent hub path (remove last segment which is the port)
+        const hubPath = parts.slice(0, -1).join('.');
+        hubLocation = `${device.bus}-${hubPath}`;
       } else {
-        hubLocation = parts[0];
+        // Direct port on root, location is just the port number
+        hubLocation = `${device.bus}`;
       }
     }
+    
     return {
       location: hubLocation,
-      port: port.hubPort || port.port
+      port: portNum
     };
   };
 
@@ -66,6 +74,9 @@ export function PowerControl({ device, port, onClose, onActionComplete }: PowerC
     }
   };
 
+  const params = getUhubctlParams();
+  const uhubctlCommand = `uhubctl -l ${params.location} -p ${params.port} -a <action>`;
+
   return (
     <div className="power-control-overlay" onClick={onClose}>
       <div className="power-control-modal" onClick={e => e.stopPropagation()}>
@@ -93,6 +104,10 @@ export function PowerControl({ device, port, onClose, onActionComplete }: PowerC
               <span className="info-value">{port.device.name}</span>
             </div>
           )}
+          <div className="info-row command-preview">
+            <span className="info-label">Command:</span>
+            <span className="info-value">{uhubctlCommand}</span>
+          </div>
         </div>
 
         <div className="power-control-actions">
