@@ -1,0 +1,169 @@
+.power-control-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.power-control-modal {
+  background: #2a2a2a;
+  border-radius: 12px;
+  border: 1px solid #3a3a3a;
+  min-width: 350px;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow: auto;
+}
+
+.power-control-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.power-control-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #fff;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: #fff;
+}
+
+.power-control-info {
+  padding: 16px 20px;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 13px;
+}
+
+.info-label {
+  color: #888;
+}
+
+.info-value {
+  color: #fff;
+  font-family: monospace;
+}
+
+.power-control-actions {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.power-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.power-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.power-btn.power-on {
+  background: linear-gradient(135deg, #00aa55 0%, #008844 100%);
+  color: white;
+}
+
+.power-btn.power-on:hover:not(:disabled) {
+  background: linear-gradient(135deg, #00cc66 0%, #00aa55 100%);
+}
+
+.power-btn.power-off {
+  background: linear-gradient(135deg, #cc3333 0%, #aa2222 100%);
+  color: white;
+}
+
+.power-btn.power-off:hover:not(:disabled) {
+  background: linear-gradient(135deg, #dd4444 0%, #cc3333 100%);
+}
+
+.power-btn.power-cycle {
+  background: linear-gradient(135deg, #cc8800 0%, #aa7000 100%);
+  color: white;
+}
+
+.power-btn.power-cycle:hover:not(:disabled) {
+  background: linear-gradient(135deg, #dd9900 0%, #cc8800 100%);
+}
+
+.power-control-status {
+  margin: 0 20px 20px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.power-control-status.loading {
+  background: #333;
+  color: #4a9eff;
+  text-align: center;
+}
+
+.power-control-status.success {
+  background: rgba(0, 170, 85, 0.2);
+  border: 1px solid #00aa55;
+}
+
+.power-control-status.error {
+  background: rgba(204, 51, 51, 0.2);
+  border: 1px solid #cc3333;
+}
+
+.status-header {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.power-control-status.success .status-header {
+  color: #00cc66;
+}
+
+.power-control-status.error .status-header {
+  color: #ff4444;
+}
+
+.status-output {
+  margin: 0;
+  padding: 8px;
+  background: #1a1a1a;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 200px;
+  overflow: auto;
+  color: #aaa;
+}

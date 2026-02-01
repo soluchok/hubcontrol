@@ -1,0 +1,7 @@
+module hubcontrol
+
+go 1.21
+
+require github.com/gorilla/mux v1.8.1
+
+require github.com/BurntSushi/toml v1.6.0

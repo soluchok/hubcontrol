@@ -1,0 +1,366 @@
+.usb-device {
+  margin: 8px 0;
+  border-radius: 8px;
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  overflow: hidden;
+}
+
+.device-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 12px;
+  border-left: 4px solid #666;
+}
+
+.device-header.hub {
+  background: linear-gradient(135deg, #1e3a5f 0%, #1a1a2e 100%);
+  border-left-color: #4a9eff;
+}
+
+.device-header.hub.aggregated {
+  background: linear-gradient(135deg, #2d1e5f 0%, #1a1a2e 100%);
+  border-left-color: #9b4aff;
+}
+
+.device-header.endpoint {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+}
+
+.device-header.speed-super {
+  border-left-color: #00ff88;
+}
+
+.device-header.speed-high {
+  border-left-color: #4a9eff;
+}
+
+.device-header.speed-full {
+  border-left-color: #ffaa00;
+}
+
+.device-header.speed-low {
+  border-left-color: #ff6666;
+}
+
+.device-icon {
+  font-size: 24px;
+  min-width: 32px;
+  text-align: center;
+}
+
+/* Device type icons using CSS shapes */
+.device-icon::before,
+.port-device-icon::before {
+  content: '';
+  display: inline-block;
+}
+
+/* Hub icon - multiple dots */
+.icon-hub::before {
+  width: 20px;
+  height: 20px;
+  background: 
+    radial-gradient(circle at 25% 25%, #4a9eff 3px, transparent 3px),
+    radial-gradient(circle at 75% 25%, #4a9eff 3px, transparent 3px),
+    radial-gradient(circle at 25% 75%, #4a9eff 3px, transparent 3px),
+    radial-gradient(circle at 75% 75%, #4a9eff 3px, transparent 3px),
+    radial-gradient(circle at 50% 50%, #fff 4px, transparent 4px);
+}
+
+/* Audio icon - speaker shape */
+.icon-audio::before {
+  width: 16px;
+  height: 16px;
+  background: #00ff88;
+  clip-path: polygon(0% 35%, 30% 35%, 60% 10%, 60% 90%, 30% 65%, 0% 65%);
+}
+
+/* Video/camera icon */
+.icon-video::before {
+  width: 18px;
+  height: 14px;
+  background: #ff6b6b;
+  border-radius: 2px;
+  box-shadow: inset -4px 0 0 0 #cc5555;
+}
+
+/* Input device (keyboard/mouse) */
+.icon-input::before {
+  width: 16px;
+  height: 12px;
+  background: #ffaa00;
+  border-radius: 2px;
+  border: 2px solid #cc8800;
+}
+
+/* Wireless/Bluetooth */
+.icon-wireless::before {
+  width: 16px;
+  height: 16px;
+  border: 3px solid #9b4aff;
+  border-radius: 50%;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  transform: rotate(-45deg);
+}
+
+/* Network/Ethernet */
+.icon-network::before {
+  width: 16px;
+  height: 16px;
+  background: #00ccff;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+/* Storage */
+.icon-storage::before {
+  width: 14px;
+  height: 16px;
+  background: linear-gradient(180deg, #888 0%, #888 30%, #666 30%, #666 70%, #888 70%);
+  border-radius: 2px;
+}
+
+/* Generic device */
+.icon-device::before {
+  width: 12px;
+  height: 12px;
+  background: #4a9eff;
+  border-radius: 50%;
+}
+
+/* Smaller icons for port grid */
+.port-device-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.port-device-icon::before {
+  transform: scale(0.8);
+}
+
+.device-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.device-name {
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.aggregated-badge {
+  font-size: 9px;
+  background: linear-gradient(135deg, #9b4aff, #6a2aff);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.device-details {
+  display: flex;
+  gap: 12px;
+  font-size: 11px;
+  color: #888;
+  flex-wrap: wrap;
+}
+
+.device-id {
+  font-family: monospace;
+  background: #333;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.device-speed {
+  color: #4a9eff;
+}
+
+.device-class {
+  color: #aaa;
+}
+
+.sub-hub-count {
+  color: #9b4aff;
+  font-weight: 500;
+}
+
+.bus-info {
+  font-size: 11px;
+  color: #666;
+  font-family: monospace;
+  white-space: nowrap;
+}
+
+.ports-container {
+  padding: 12px 16px;
+  border-top: 1px solid #3a3a3a;
+  background: #222;
+}
+
+.ports-header {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+.connected-count {
+  color: #4a9eff;
+}
+
+.ports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
+  gap: 6px;
+  margin-bottom: 12px;
+  max-width: 100%;
+}
+
+.ports-grid.large-grid {
+  grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+  gap: 8px;
+}
+
+.ports-grid-custom {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 12px;
+  max-width: 100%;
+  justify-content: start;
+}
+
+.port-spacer {
+  aspect-ratio: 1;
+  min-width: 42px;
+  max-width: 60px;
+  /* Invisible spacer - takes up space but not visible */
+}
+
+.port {
+  aspect-ratio: 1;
+  min-width: 42px;
+  max-width: 60px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  position: relative;
+  gap: 2px;
+}
+
+.port.empty {
+  background: #333;
+  border-color: #444;
+}
+
+.port.occupied {
+  background: linear-gradient(135deg, #1e3a5f 0%, #0f1f3a 100%);
+  border-color: #4a9eff;
+}
+
+.port.missing {
+  background: #2a2020;
+  border-color: #663333;
+  opacity: 0.5;
+}
+
+.port:hover {
+  transform: scale(1.05);
+  border-color: #fff;
+  z-index: 1;
+}
+
+.port-number {
+  font-size: 11px;
+  font-weight: 600;
+  color: #aaa;
+}
+
+.port.occupied .port-number {
+  color: #fff;
+}
+
+.port-empty-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #444;
+}
+
+.port-device-indicator {
+  font-size: 8px;
+  color: #00ff88;
+  position: absolute;
+  bottom: 2px;
+}
+
+.connected-devices {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.port-connection {
+  position: relative;
+  padding-left: 20px;
+}
+
+.connection-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 50%;
+  width: 16px;
+  border-left: 2px solid #4a9eff;
+  border-bottom: 2px solid #4a9eff;
+  border-bottom-left-radius: 8px;
+}
+
+.port-label {
+  position: absolute;
+  left: -40px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-size: 9px;
+  color: #666;
+  white-space: nowrap;
+}
+
+.port-key {
+  color: #9b4aff;
+  font-family: monospace;
+  font-size: 8px;
+}
+
+/* Depth-based styling for visual hierarchy */
+.depth-0 { margin-left: 0; }
+.depth-1 { margin-left: 0; }
+.depth-2 { margin-left: 0; }
+.depth-3 { margin-left: 0; }
+.depth-4 { margin-left: 0; }
+.depth-5 { margin-left: 0; }
+
+.depth-1 > .device-header { opacity: 0.95; }
+.depth-2 > .device-header { opacity: 0.9; }
+.depth-3 > .device-header { opacity: 0.85; }
+.depth-4 > .device-header { opacity: 0.8; }
+.depth-5 > .device-header { opacity: 0.75; }

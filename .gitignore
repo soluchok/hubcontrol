@@ -1,0 +1,23 @@
+# Binaries
+bin/
+*.exe
+
+# Go
+backend/hubcontrol
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

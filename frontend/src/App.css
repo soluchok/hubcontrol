@@ -1,0 +1,34 @@
+.app {
+  min-height: 100vh;
+  background: #121212;
+}
+
+.app-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+.app-error h2 {
+  color: #ff6666;
+  margin-bottom: 16px;
+}
+
+.app-error p {
+  color: #888;
+  margin-bottom: 24px;
+}
+
+.app-error button {
+  background: #4a9eff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}

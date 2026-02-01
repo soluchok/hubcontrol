@@ -1,0 +1,88 @@
+# Hub Control Configuration
+# 
+# This file allows you to configure how USB hubs are displayed.
+# You can hide internal ports, rename hubs, and customize the view.
+
+# Hub configurations are identified by vendor:product ID
+# Example: "1a40:0201" for Terminus Technology Inc. hub
+
+[[hubs]]
+# Terminus 20-port Hub (appears as 7-port hub with 6x4-port child hubs)
+vendor_id = "1a40"
+product_id = "0201"
+name = "Sipolar A-805P 20 Ports USB 2.0 HUB"
+
+# Total physical ports on this hub
+physical_ports = 20
+
+# Ports to hide (internal/inaccessible ports)
+# These are specified as "child_hub_index.port_number"
+# Child hub index is 1-6 (order they appear in lsusb)
+# Port number is 1-4 for each child hub
+#
+# Example: If child hub 6 ports 3 and 4 are internal, and child hub 5 port 4 is internal:
+hidden_ports = [
+  # "5.4",  # Child hub 5 (device 42), port 4
+  # "6.3",  # Child hub 6 (device 43), port 3
+  # "6.4",  # Child hub 6 (device 43), port 4
+  # "1.4",  # Child hub 1 (device 38), port 4
+]
+
+# Grid layout: Visual arrangement of ports matching physical hub layout
+# Use -1 for empty spaces (gaps in the physical layout)
+# Each row is an array, rows are separated
+# Example for a 20-port hub with 2 rows of 10:
+grid_layout = [
+  [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+]
+
+# Example with gaps (if your hub has irregular layout):
+# grid_layout = [
+#   [1, 2, 3, -1, 4, 5, 6],
+#   [7, 8, 9, -1, 10, 11, 12],
+#   [-1, -1, 13, 14, 15, -1, -1]
+# ]
+
+# Port mapping: Maps logical "child_hub.port" to physical port number printed on hub
+# This reorders ports in the UI to match the physical labels on your hub.
+#
+# To discover your mapping:
+#   1. Connect a device to physical port 1 on the hub
+#   2. Run the app and note which logical port it appears on (e.g., "6.1" shows in portKey)
+#   3. Add: "6.1" = 1
+#   4. Repeat for all 20 ports
+#
+# Format: "child_hub_index.port_number" = physical_port_number
+#
+# Example mapping (you'll need to discover your actual mapping):
+[hubs.port_map]
+"6.1" = 1
+"6.2" = 2
+"6.3" = 3
+# "6.4" = ?
+
+# "3.1" = ?
+"3.2" = 4
+"3.3" = 5
+"3.4" = 6
+
+"4.1" = 7
+"4.2" = 8
+"4.3" = 9
+"4.4" = 10
+
+"5.1" = 11
+"5.2" = 12
+# "5.3" = ?
+"5.4" = 13
+
+# "2.1" = ?
+"2.2" = 14
+"2.3" = 15
+"2.4" = 16
+
+"1.1" = 17
+"1.2" = 18
+"1.3" = 19
+"1.4" = 20
